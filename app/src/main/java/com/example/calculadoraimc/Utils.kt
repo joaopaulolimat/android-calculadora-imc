@@ -1,14 +1,17 @@
 package com.example.calculadoraimc
 internal fun getImcResult(pesoTxt: String, alturaTxt: String): IMCResult {
 
+    // checa se voltou texto sobre altura e/ou peso
     if(pesoTxt.isNullOrEmpty() || alturaTxt.isNullOrEmpty()){
         return IMCResult(Result.BLANK)
     }
 
+    // converte valores para float
     val peso = pesoTxt.toFloat()
     val altura = alturaTxt.toFloat()
     val imc = peso / (altura * altura)
 
+    // checa o valor do imc e retorna o que ele indica
     if (imc < 16){
         return IMCResult(Result.MAGREZA_III)
     } else if (imc < 17){
@@ -30,6 +33,7 @@ internal fun getImcResult(pesoTxt: String, alturaTxt: String): IMCResult {
 
 data class IMCResult(val result: Result)
 enum class Result(val label: String) {
+    //enum com os resultados do imc
     MAGREZA_III("Magreza Severa"),
     MAGREZA_II("Magreza moderada"),
     MAGREZA_I("Magreza leve"),
